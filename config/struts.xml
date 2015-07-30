@@ -9,11 +9,22 @@
 	<constant name="struts.action.extension" value="action" />
 	<!-- 配置主题 -->
 	<constant name="struts.ui.theme" value="simple" />
+	<!-- 默认 -->
 	<package name="default" namespace="/" extends="struts-default">
 		<!-- 配置测试用的Action，未与Spring整合，class属性写类的全名 -->
 		<!-- 当Struts2与Spring整合后，class属性可以写bean的名称 -->
 		<action name="demo1" class="helloAction">
 			<result>/WEB-INF/views/Hello.jsp</result>
 		</action>
+	</package>
+	
+	<!-- 系统管理模块 -->
+	<package name="system-manager" namespace="/" extends="struts-default">
+	  <!--岗位管理 -->
+	  <action name="role_*_action" method="{1}" class="com.wangwang.oa.controller.RoleAction">
+	     <result name="list">/WEB-INF/views/System_Role/list.jsp</result>
+	     <result name="saveUI">/WEB-INF/views/System_Role/saveUI.jsp</result>
+	     <result name="toList" type="redirectAction">role_list_action</result>
+	  </action>
 	</package>
 </struts>

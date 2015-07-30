@@ -25,7 +25,7 @@ public interface BaseDao<T> {
      * 根据ID 删除实体
      * @param id
      */
-	void delete(Long id);
+	void delete(Integer id);
     /**
      * 获得全部实体
      * @return
@@ -36,11 +36,11 @@ public interface BaseDao<T> {
      * @param ids
      * @return
      */
-	List<T> getIds(Long[] ids);
+	List<T> getIds(Integer[] ids);
 	/**
 	 * 根据ID 获得实体
 	 * @param id
 	 * @return
 	 */
-    T getById(Long id);
+    T getById(Integer id);
 }

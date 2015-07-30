@@ -16,7 +16,7 @@
 	<!-- 自动扫描与装配bean -->
 	<context:component-scan base-package="com.wangwang.oa"/>
     
-	    <bean id="demoService" class="com.wangwang.oa.service.impl.DemoServiceImpl"> </bean>
+	   <!--  <bean id="demoService" class="com.wangwang.oa.service.impl.DemoServiceImpl"> </bean> -->
 	<!-- 加载jdbc.properties文件 -->
 	<context:property-placeholder location="classpath:jdbc.properties" />
 	<!-- 手动加载 -->
@@ -60,7 +60,8 @@
 	<property name="dataSource" ref="dataSource"/>
 </bean>
 <!-- 注解事务 -->
-<tx:annotation-driven transaction-manager="txManager"/>
-	
+<tx:annotation-driven transaction-manager="txManager" />
+
+
 
 </beans>

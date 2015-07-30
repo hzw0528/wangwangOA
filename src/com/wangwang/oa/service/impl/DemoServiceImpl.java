@@ -13,6 +13,7 @@ import com.wangwang.oa.service.DemoService;
 
 
 @Service("demoService")
+@Transactional
 public class DemoServiceImpl implements DemoService {
 
 	// 注入容器管理的SessionFactory对象

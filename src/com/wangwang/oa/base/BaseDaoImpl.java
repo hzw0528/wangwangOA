@@ -55,7 +55,7 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
 	 * 删除实体
 	 */
 	@Override
-	public void delete(Long id) {
+	public void delete(Integer id) {
 		Object obj = getById(id);
 		if (obj != null)
 			getSession().delete(obj);
@@ -75,7 +75,7 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
 	 * 根据IDs 获得实体集合
 	 */
 	@Override
-	public List<T> getIds(Long[] ids) {
+	public List<T> getIds(Integer[] ids) {
 
 		List<T> list = getSession()
 				.createQuery(
@@ -88,7 +88,7 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
 	 * 根据ID 获得实体
 	 */
 	@Override
-	public T getById(Long id) {
+	public T getById(Integer id) {
 		List<T> list = getSession()
 				.createQuery("FROM " + clazz.getSimpleName() + " WHERE id=:id")
 				.setParameter("id", id).list();
