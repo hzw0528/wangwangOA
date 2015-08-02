@@ -26,5 +26,11 @@
 	     <result name="saveUI">/WEB-INF/views/System_Role/saveUI.jsp</result>
 	     <result name="toList" type="redirectAction">role_list_action</result>
 	  </action>
+	  <!-- 部门管理 -->
+	  <action name="depart_*_action" method="{1}" class="com.wangwang.oa.controller.DepartmentAction">
+	     <result name="list">/WEB-INF/views/System_Department/list.jsp</result>
+	     <result name="toList" type="redirectAction">depart_list_action</result>
+	     <result name="saveUI">/WEB-INF/views/System_Department/saveUI.jsp</result>
+	  </action>
 	</package>
 </struts>

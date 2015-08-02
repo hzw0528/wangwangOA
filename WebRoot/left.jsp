@@ -187,7 +187,7 @@
                     <div class="level2Style"><img src="style/images/MenuIcon/menu_arrow_single.gif" /> <a target="right" href="${pageContext.request.contextPath }/role_list_action.action"> 岗位管理</a></div>
                 </li>
                 <li class="level2">
-                    <div class="level2Style"><img src="style/images/MenuIcon/menu_arrow_single.gif" /> <a target="right" href="System_Department/list.html"> 部门管理</a></div>
+                    <div class="level2Style"><img src="style/images/MenuIcon/menu_arrow_single.gif" /> <a target="right" href="${pageContext.request.contextPath}/depart_list_action.action"> 部门管理</a></div>
                 </li>
                 <li class="level2">
                     <div class="level2Style"><img src="style/images/MenuIcon/menu_arrow_single.gif" /> <a target="right" href="System_User/list.html"> 用户管理</a></div>

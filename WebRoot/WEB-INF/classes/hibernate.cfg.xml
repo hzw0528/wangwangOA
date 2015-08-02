@@ -16,5 +16,6 @@
   <mapping resource="com/wangwang/oa/domain/Demo.hbm.xml"/>
   <mapping class="com.wangwang.oa.domain.User" resource="com/wangwang/oa/domain/User.hbm.xml"/>
   <mapping resource="com/wangwang/oa/domain/Role.hbm.xml"/>
+  <mapping resource="com/wangwang/oa/domain/Department.hbm.xml"/>
  </session-factory>
 </hibernate-configuration>
