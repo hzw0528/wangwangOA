@@ -1,13 +1,16 @@
 package com.wangwang.oa.domain;
 
+import java.util.HashSet;
 import java.util.Set;
+
+
 
 public class Department {
 	private Integer id;
 	private String name;
-	private Set<User> users;
+	private Set<User> users = new  HashSet<User>();
 	private Department parent;
-	private Set<Department> chidrent;
+	private Set<Department> chidrent = new HashSet<Department>();
 	private String description;
 
 	public Integer getId() {

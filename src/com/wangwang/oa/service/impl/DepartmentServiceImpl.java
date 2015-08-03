@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.wangwang.oa.dao.DepartmentDao;
 import com.wangwang.oa.domain.Department;
 import com.wangwang.oa.service.DepartmentService;
+
 @Service
 @Transactional
 public class DepartmentServiceImpl implements DepartmentService {
@@ -41,6 +42,20 @@ public class DepartmentServiceImpl implements DepartmentService {
 	public Department getDepartmentById(Integer id) {
 
 		return departmentDao.getById(id);
+	}
+
+	@Override
+	public List<Department> getDepartmentsByParentId(Integer parentId) {
+		if (parentId != null) {
+			return departmentDao.getAllByParents(parentId);
+		}
+		return null;
+	}
+
+	@Override
+	public List<Department> getTopDepartments() {
+
+		return departmentDao.getTopDepartments();
 	}
 
 }

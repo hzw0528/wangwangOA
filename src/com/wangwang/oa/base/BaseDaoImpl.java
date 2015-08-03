@@ -89,6 +89,7 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
 	 */
 	@Override
 	public T getById(Integer id) {
+		if(id==null) return null;
 		List<T> list = getSession()
 				.createQuery("FROM " + clazz.getSimpleName() + " WHERE id=:id")
 				.setParameter("id", id).list();

@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import com.opensymphony.xwork2.ActionContext;
 import com.wangwang.oa.domain.Department;
 import com.wangwang.oa.service.DepartmentService;
+import com.wangwang.oa.util.DepartmentUtils;
 
 @Controller
 @Scope("prototype")
@@ -20,6 +21,8 @@ public class DepartmentAction {
 
 	private Department department;
 	private Integer id;
+	private Integer parentId;
+
 	/**
 	 * 列表
 	 * 
@@ -27,8 +30,21 @@ public class DepartmentAction {
 	 */
 	public String list() {
 
-		List<Department> depart_list = departmentService.getAllDepartments();
-		ActionContext.getContext().put("depart_list", depart_list);
+		if (parentId == null) {
+			// 没有传入parentid时候获得全部的部门
+			List<Department> depart_list = departmentService
+					.getAllDepartments();
+			ActionContext.getContext().put("depart_list", depart_list);
+		} else {
+			// 根据parentid获得部门信息
+			List<Department> depart_list = departmentService
+					.getDepartmentsByParentId(parentId);
+			ActionContext.getContext().put("depart_list", depart_list);
+			// 获得父节点的父节点
+			Department depart_parent = departmentService
+					.getDepartmentById(parentId);
+			ActionContext.getContext().put("depart_parent", depart_parent);
+		}
 		return "list";
 	}
 
@@ -38,6 +54,14 @@ public class DepartmentAction {
 	 * @return
 	 */
 	public String addUI() {
+		// 获得所有的部门
+		// List<Department> departments
+		// =DepartmentUtils.getAllDepartments(departmentService.getTopDepartments());
+		// //departmentService.getAllDepartments();
+		List<Department> topList = departmentService.getTopDepartments();
+		List<Department> departments = DepartmentUtils
+				.getAllDepartments(topList,departmentService);
+		ActionContext.getContext().put("departments", departments);
 		return "saveUI";
 	}
 
@@ -47,6 +71,9 @@ public class DepartmentAction {
 	 * @return
 	 */
 	public String add() {
+
+		Department parent = departmentService.getDepartmentById(parentId);
+		department.setParent(parent);
 		departmentService.addDepartment(department);
 		return "toList";
 	}
@@ -57,8 +84,16 @@ public class DepartmentAction {
 	 * @return
 	 */
 	public String updateUI() {
-		department=departmentService.getDepartmentById(getId());
-		System.out.println(department);
+		// 获得所有的部门
+		// List<Department> departments = departmentService.getAllDepartments();
+		List<Department> topList = departmentService.getTopDepartments();
+		List<Department> departments = DepartmentUtils
+				.getAllDepartments(topList,departmentService);
+		System.out.println("Children count:"
+				+ topList.get(0).getChidrent().size());
+		ActionContext.getContext().put("departments", departments);
+		department = departmentService.getDepartmentById(getId());
+
 		return "saveUI";
 	}
 
@@ -68,6 +103,8 @@ public class DepartmentAction {
 	 * @return
 	 */
 	public String update() {
+		Department parent = departmentService.getDepartmentById(parentId);
+		department.setParent(parent);
 		departmentService.modifyDepartment(department);
 		return "toList";
 	}
@@ -96,6 +133,14 @@ public class DepartmentAction {
 
 	public void setId(Integer id) {
 		this.id = id;
+	}
+
+	public Integer getParentId() {
+		return parentId;
+	}
+
+	public void setParentId(Integer parentId) {
+		this.parentId = parentId;
 	}
 
 }

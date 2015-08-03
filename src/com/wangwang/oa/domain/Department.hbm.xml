@@ -21,7 +21,7 @@
 		<many-to-one name="parent" class="com.wangwang.oa.domain.Department"
 			column="PARENTID" />
 		<!-- chilrent 属性 本类与Parent有着 一对多关系 -->
-		<set name="chidrent">
+		<set name="chidrent" cascade="delete" order-by="id asc"><!-- cascade 级联 -->
 			<key column="PARENTID" />
 			<one-to-many class="com.wangwang.oa.domain.Department" />
 		</set>

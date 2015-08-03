@@ -61,13 +61,13 @@
 			<tbody id="TableData" class="dataContainer" datakey="departmentList">
 				<s:iterator value="#depart_list">
 					<tr class="TableDetail1 template">
-						<td><a href="_list_level2.html"><s:property value="name"/></a>&nbsp;</td>
+						<td><a href="${pageContext.request.contextPath}/depart_list_action.action?parentId=${id}"><s:property value="name"/></a>&nbsp;</td>
 						<td><s:property value="parent.name"/>&nbsp;</td>
 						<td><s:property value="description"/>&nbsp;</td>
 						<td><a
 							onClick="deleteDepart(${id})" href="#">删除</a>
 							<a
-							href="${pageContext.request.contextPath }/depart_updateUI_action.action?id=${id}">修改</a>
+							href="${pageContext.request.contextPath }/depart_updateUI_action.action?id=${id}&parentId=${parent.id}">修改</a>
 						</td>
 					</tr>
 				</s:iterator>
@@ -78,9 +78,10 @@
 		<div id="TableTail">
 			<div id="TableTail_inside">
 				<a
-					href="${pageContext.request.contextPath}/depart_addUI_action.action"><img
+					href="${pageContext.request.contextPath}/depart_addUI_action.action?parentId=${parentId}"><img
 					src="${pageContext.request.contextPath}/style/images/createNew.png" />
 				</a>
+				<a href="${pageContext.request.contextPath}/depart_list_action.action?parentId=${depart_parent.parent.id}"><img src="${pageContext.request.contextPath}/style/blue/images/button/ReturnToPrevLevel.png"></a>
 			</div>
 		</div>
 	</div>

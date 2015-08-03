@@ -43,4 +43,7 @@ public interface DepartmentService {
 	 * @return
 	 */
 	Department getDepartmentById(Integer id);
+
+	List<Department> getDepartmentsByParentId(Integer parentId);
+	List<Department> getTopDepartments();
 }
